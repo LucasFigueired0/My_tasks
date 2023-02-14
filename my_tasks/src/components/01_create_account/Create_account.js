@@ -33,6 +33,23 @@ const Create_account = () => {
                         <span className='textInput'>City</span>
                         <input className='areaInput' type="text" name="City" placeholder='Your City' />
                     </label>
+                    <br />
+                    <label className='itemCadastro'>
+                        <span className='textInput'>e-mail</span>
+                        <input className='areaInput' type="email" name="email" placeholder='A valid e-mail here' />
+                    </label>
+                    <br />
+                    <label className='itemCadastro'>
+                        <span className='textInput'>password</span>
+                        <input className='areaInput' type="password" name="password" placeholder='Your password' />
+                    </label>
+                    <br />
+                    <label className='itemCadastro'>
+                        <span className='textInput'>password</span>
+                        <input className='areaInput' type="password" name="passwordConfirm" placeholder='Confirm your password' />
+                    </label>
+                    <br />
+                    <button className='botaoPadrao'>Register Now</button>
                 </form>
             </div>
         </div>
