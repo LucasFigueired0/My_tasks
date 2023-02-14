@@ -1,14 +1,17 @@
 import React from 'react'
 import "./Create_account.css"
+import ImgForm from '../00_ImagemForm/ImgForm'
+import image from '../../img/image2.svg'
+import logo from '../../img/logo.svg'
 const Create_account = () => {
     return (
-        <div className="principalCadastro">
-            <div className='cadastro'>
+        <div className='containerForm'>
+            <div className='box_1'>
+                <form className='formCadastro'>
                     <div className='areaCadastro'>
                         <h1 className='tituloCadastro'>Welcome,</h1>
                         <p className='subTituloCadastro'>Please, register to continue</p>
                     </div>
-                <form className='formCadastro'>
                     <label className='itemCadastro'>
                         <span className='textInput'>first name</span>
                         <input className='areaInput' type="text" name="FirstName" placeholder='Your first name' />
@@ -48,9 +51,15 @@ const Create_account = () => {
                         <span className='textInput'>password</span>
                         <input className='areaInput' type="password" name="passwordConfirm" placeholder='Confirm your password' />
                     </label>
-                    <br />
+
                     <button className='botaoPadrao'>Register Now</button>
                 </form>
+            </div>
+            <div className="box_2">
+                <a href="https://compasso.ninja/pls/interno/home.html" target="_blank">
+                    <img src={logo} alt="" className='logoImagem' />
+                </a>
+                <img src={image} alt="" className='imageForm' />
             </div>
         </div>
     )
