@@ -23,28 +23,31 @@ export const validateEmail = new RegExp(
     "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+[a-zA-Z]{2,}$"
 );
 
-//Validate password[ ]
+//Validate password[x]
 export const validatePassword = new RegExp(
     "^(?=.*?[A-Za-z])(?=.*?[0-9]).{6,}$"
 );
 
-//Validate birth date
-export const validateBirth = (monthInput, dayInput, yearInput) => {
-    let today = new Date(),
-        year = today.getFullYear(),
-        month = today.getMonth() + 1,
-        day = today.getDate(),
+//Validate birth date [x]
+export const validateBirth = (dataUser) => {
+    const dataNascimento = new Date(dataUser);
+    const agora = new Date();
+    const anos = agora.getFullYear() - dataNascimento.getFullYear();
+    const mesAtual = agora.getMonth() + 1;
+    const diaAtual = agora.getDate();
+    const mesNascimento = dataNascimento.getMonth() + 1;
+    const diaNascimento = dataNascimento.getDate();
 
-        monthNumber = +monthInput,
-        dayNumber = +dayInput,
-        yearNumber = +yearInput,
+    let idade = anos;
 
-        age = year - yearNumber;
-
-    if ((month < monthNumber) || ((month === monthNumber) && (day < dayNumber))) {
-        age--;
+    if (mesAtual < mesNascimento) {
+        idade--;
+    } else if (mesAtual === mesNascimento && diaAtual < diaNascimento) {
+        idade--;
     }
 
-    return age < 0 ? 0 : age;
+    return idade <= 0 ? true : false;
 }
+
+
 

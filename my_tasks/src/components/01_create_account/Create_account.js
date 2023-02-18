@@ -11,7 +11,8 @@ import {
     validateCountry,
     validateCity,
     validateEmail,
-    validatePassword
+    validatePassword,
+    validateBirth
 }from "../../utils/regex"
 
 const Create_account = () => {
@@ -38,6 +39,10 @@ const Create_account = () => {
         return !validacao.test(valor)
     }
 
+    // const validateAgeUser = (dataUser) =>{
+    //    return validateBirth(dataUser) <= 0?true:false;
+    // }
+
     const handleFirstName = (e) => {
         setFirstName(e.target.value);
         setErrorName(validate(e.target.value, validateFirstName));
@@ -50,6 +55,7 @@ const Create_account = () => {
 
     const handleBirthDate = (e) => {
         setBirthDate(e.target.value);
+        setErrorBirthDate(validateBirth(e.target.value));
     };
 
     const handleCountry = (e) => {
@@ -74,14 +80,12 @@ const Create_account = () => {
 
     const handleConfirmPassword = (e) => {
         setConfirmPassword(e.target.value)
-
         if (password === e.target.value) {
-            setPasswordError(true)
-        }
-        else {
             setPasswordError(false)
         }
-
+        else {
+            setPasswordError(true)
+        }
     };
 
 
@@ -124,8 +128,6 @@ const Create_account = () => {
             setError('')
 
         }
-        console.log(firstName);
-
     };
 
     return (
