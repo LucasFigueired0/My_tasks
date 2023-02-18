@@ -13,7 +13,7 @@ import {
     validateEmail,
     validatePassword,
     validateBirth
-}from "../../utils/regex"
+} from "../../utils/regex"
 
 const Create_account = () => {
 
@@ -80,7 +80,7 @@ const Create_account = () => {
 
     const handleConfirmPassword = (e) => {
         setConfirmPassword(e.target.value)
-        if (password === e.target.value) {
+        if (password === e.target.value && validate(password, validatePassword) === false) {
             setPasswordError(false)
         }
         else {
@@ -92,23 +92,17 @@ const Create_account = () => {
     const handleSubmit = (e) => {
         e.preventDefault();
 
-        if (!firstName | !lastName | !birthDate | !country | !city | !email) {
-            setError("Preencha todos os campos!")
-            if (firstName === '') setErrorName(true);
-
-            if (lastName === '') setErrorLastName(true);
-
-            if (birthDate === '') setErrorBirthDate(true);
-
-            if (country === '') setErrorCountry(true);
-
-            if (city === '') setErrorCity(true)
-
-            if (email === '' || validateEmail(email, validateEmail)) setErrorEmail(true);
-
-            if (password === '') setPasswordError(true)
-
-        } else {
+        if ((firstName === '' || errorName === true) ||
+            (lastName === '' || errorLastName === true) ||
+            (birthDate === '' || errorBirthDate === true) ||
+            (country === '' || errorCountry === true) ||
+            (city === '' || errorCity === true) ||
+            (email === '' || errorEmail === true) ||
+            (password === '' || passwordError === true)
+        ) {
+            alert('Preencha todos os campos corretamente!')
+        }
+        else {
             setFirstName('');
             setLastName('');
             setBirthDate('');
