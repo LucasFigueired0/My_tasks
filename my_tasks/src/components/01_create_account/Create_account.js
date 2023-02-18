@@ -1,8 +1,19 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
+//Styles
 import "./Create_account.css"
-
+//Images
 import image from '../../img/image2.svg'
 import logo from '../../img/logo.svg'
+//Utils
+import {
+    validateFirstName,
+    validateLastName,
+    validateCountry,
+    validateCity,
+    validateEmail,
+    validatePassword
+}from "../../utils/regex"
+
 const Create_account = () => {
 
     const [firstName, setFirstName] = useState('');
@@ -15,22 +26,26 @@ const Create_account = () => {
     const [confirmPassword, setConfirmPassword] = useState('');
     // Error
     const [error, setError] = useState('');
-    const [errorName, setErrorName] = useState(1)
-    const [errorLastName, setErrorLastName] = useState(1);
-    const [errorBirthDate, setErrorBirthDate] = useState(1);
-    const [errorCountry, setErrorCountry] = useState(1);
-    const [errorCity, setErrorCity] = useState(1);
-    const [errorEmail, setErrorEmail] = useState(1);
-    const [passwordError, setPasswordError] = useState(1);
+    const [errorName, setErrorName] = useState(false)
+    const [errorLastName, setErrorLastName] = useState(false);
+    const [errorBirthDate, setErrorBirthDate] = useState(false);
+    const [errorCountry, setErrorCountry] = useState(false);
+    const [errorCity, setErrorCity] = useState(false);
+    const [errorEmail, setErrorEmail] = useState(false);
+    const [passwordError, setPasswordError] = useState(false);
 
+    const validate = (valor, validacao) => {
+        return !validacao.test(valor)
+    }
 
     const handleFirstName = (e) => {
         setFirstName(e.target.value);
-
+        setErrorName(validate(e.target.value, validateFirstName));
     };
 
     const handleLastName = (e) => {
         setLastName(e.target.value);
+        setErrorLastName(validate(e.target.value, validateLastName));
     };
 
     const handleBirthDate = (e) => {
@@ -39,61 +54,55 @@ const Create_account = () => {
 
     const handleCountry = (e) => {
         setCountry(e.target.value);
+        setErrorCountry(validate(e.target.value, validateCountry));
     };
 
     const handleCity = (e) => {
         setCity(e.target.value);
+        setErrorCity(validate(e.target.value, validateCity))
     };
 
     const handleEmail = (e) => {
         setEmail(e.target.value);
+        setErrorEmail(validate(e.target.value, validateEmail))
     };
 
     const handlePassword = (e) => {
         setPassword(e.target.value);
+        setPasswordError(validate(e.target.value, validatePassword))
     };
 
-    
     const handleConfirmPassword = (e) => {
         setConfirmPassword(e.target.value)
 
-        if(password === e.target.value){
-            setPasswordError(1)
+        if (password === e.target.value) {
+            setPasswordError(true)
         }
-        else{
-            setPasswordError(0)
+        else {
+            setPasswordError(false)
         }
-        
+
     };
 
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        console.log("Formulário completo:")
-        console.log("First name: ", firstName);
-        console.log("Last Name: ", lastName);
-        console.log("Birth date: ", birthDate);
-        console.log("Country: ", country);
-        console.log("City: ", city);
-        console.log("Email: ", email);
-        console.log("Password: ", password);
-        console.log("Confirm password: ", confirmPassword);
 
         if (!firstName | !lastName | !birthDate | !country | !city | !email) {
             setError("Preencha todos os campos!")
-            if (firstName === '') setErrorName(0);
+            if (firstName === '') setErrorName(true);
 
-            if (lastName === '') setErrorLastName(0);
+            if (lastName === '') setErrorLastName(true);
 
-            if (birthDate === '') setErrorBirthDate(0);
+            if (birthDate === '') setErrorBirthDate(true);
 
-            if (country === '') setErrorCountry(0);
+            if (country === '') setErrorCountry(true);
 
-            if (city === '') setErrorCity(0)
+            if (city === '') setErrorCity(true)
 
-            if (email === '') setErrorEmail(0);
+            if (email === '' || validateEmail(email, validateEmail)) setErrorEmail(true);
 
-            if (password === '') setPasswordError(0)
+            if (password === '') setPasswordError(true)
 
         } else {
             setFirstName('');
@@ -105,16 +114,17 @@ const Create_account = () => {
             setPassword('');
             setConfirmPassword('');
 
-            setErrorName(1);
-            setErrorLastName(1);
-            setErrorBirthDate(1);
-            setErrorCountry(1);
-            setErrorCity(1)
-            setErrorEmail(1);
-            setPasswordError(1)
+            setErrorName(false);
+            setErrorLastName(false);
+            setErrorBirthDate(false);
+            setErrorCountry(false);
+            setErrorCity(false)
+            setErrorEmail(false);
+            setPasswordError(false)
             setError('')
 
         }
+        console.log(firstName);
 
     };
 
@@ -130,18 +140,20 @@ const Create_account = () => {
                     <label className='itemCadastro'>
                         <span className='textInput'>first name</span>
                         <input
-                            className={errorName === 1 ? 'areaInput' : 'areaInputError'}
+                            className={errorName === false ? 'areaInput' : 'areaInputError'}
                             type="text"
                             name="FirstName"
                             placeholder='Your first name'
+                            // pattern='[a-zA-Z]+'
                             value={firstName}
                             onChange={handleFirstName} />
+
                     </label>
                     <br />
                     <label className='itemCadastro'>
                         <span className='textInput'>last name</span>
                         <input
-                            className={errorLastName === 1 ? 'areaInput' : 'areaInputError'}
+                            className={errorLastName === false ? 'areaInput' : 'areaInputError'}
                             type="text"
                             name="LastName"
                             placeholder='Your last name'
@@ -154,7 +166,7 @@ const Create_account = () => {
                         <span className="textInput">Birth date</span>
                         <input
                             type="date"
-                            className={errorBirthDate === 1 ? 'areaInput' : 'areaInputError'}
+                            className={errorBirthDate === false ? 'areaInput' : 'areaInputError'}
                             value={birthDate}
                             onChange={handleBirthDate}
                         />
@@ -163,7 +175,7 @@ const Create_account = () => {
                     <label className='itemCadastro'>
                         <span className='textInput'>Country</span>
                         <input
-                            className={errorCountry === 1 ? 'areaInput' : 'areaInputError'}
+                            className={errorCountry === false ? 'areaInput' : 'areaInputError'}
                             type="text"
                             name="country"
                             placeholder='Your country'
@@ -175,7 +187,7 @@ const Create_account = () => {
                     <label className='itemCadastro'>
                         <span className='textInput'>City</span>
                         <input
-                            className={errorCity === 1 ? 'areaInput' : 'areaInputError'}
+                            className={errorCity === false ? 'areaInput' : 'areaInputError'}
                             type="text"
                             name="City"
                             placeholder='Your City'
@@ -187,7 +199,7 @@ const Create_account = () => {
                     <label className='itemCadastro'>
                         <span className='textInput'>e-mail</span>
                         <input
-                            className={errorEmail === 1 ? 'areaInput' : 'areaInputError'}
+                            className={errorEmail === false ? 'areaInput' : 'areaInputError'}
                             type="email" name="email"
                             placeholder='A valid e-mail here'
                             value={email}
@@ -197,7 +209,7 @@ const Create_account = () => {
                     <label className='itemCadastro'>
                         <span className='textInput'>password</span>
                         <input
-                            className={passwordError === 1 ? 'areaInput' : 'areaInputError'}
+                            className={passwordError === false ? 'areaInput' : 'areaInputError'}
                             type="password"
                             name="password"
                             placeholder='Your password'
@@ -215,7 +227,7 @@ const Create_account = () => {
                             placeholder='Confirm your password'
                             value={confirmPassword}
                             onChange={handleConfirmPassword}
-                            className={passwordError === 1 ? 'areaInput' : 'areaInputError'}
+                            className={passwordError === false ? 'areaInput' : 'areaInputError'}
 
                         />
                     </label>
@@ -227,7 +239,7 @@ const Create_account = () => {
                 </form>
             </div>
             <div className="box_2">
-                <a href="https://compasso.ninja/pls/interno/home.html" target="_blank">
+                <a target="_blank" href="https://compasso.ninja/pls/interno/home.html" >
                     <img src={logo} alt="" className='logoImagem' />
                 </a>
                 <img src={image} alt="" className='imageForm' />
