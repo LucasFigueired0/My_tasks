@@ -13,7 +13,7 @@ import {
     validateEmail,
     validatePassword,
     validateBirth
-} from "../../utils/regex"
+} from "../../utils/validateItems"
 
 const Create_account = () => {
 
@@ -38,10 +38,6 @@ const Create_account = () => {
     const validate = (valor, validacao) => {
         return !validacao.test(valor)
     }
-
-    // const validateAgeUser = (dataUser) =>{
-    //    return validateBirth(dataUser) <= 0?true:false;
-    // }
 
     const handleFirstName = (e) => {
         setFirstName(e.target.value);
@@ -100,7 +96,7 @@ const Create_account = () => {
             (email === '' || errorEmail === true) ||
             (password === '' || passwordError === true)
         ) {
-            alert('Preencha todos os campos corretamente!')
+            alert('Fill in the values ​​​​correctly!')
         }
         else {
             setFirstName('');
@@ -123,7 +119,7 @@ const Create_account = () => {
 
         }
     };
-
+    
     return (
         <div className='containerForm'>
             <div className='box_1'>
@@ -143,7 +139,6 @@ const Create_account = () => {
                             // pattern='[a-zA-Z]+'
                             value={firstName}
                             onChange={handleFirstName} />
-
                     </label>
                     <br />
                     <label className='itemCadastro'>
@@ -211,7 +206,6 @@ const Create_account = () => {
                             placeholder='Your password'
                             value={password}
                             onChange={handlePassword}
-
                         />
                     </label>
                     <br />
@@ -224,7 +218,6 @@ const Create_account = () => {
                             value={confirmPassword}
                             onChange={handleConfirmPassword}
                             className={passwordError === false ? 'areaInput' : 'areaInputError'}
-
                         />
                     </label>
 
@@ -235,10 +228,10 @@ const Create_account = () => {
                 </form>
             </div>
             <div className="box_2">
-                <a target="_blank" href="https://compasso.ninja/pls/interno/home.html" >
-                    <img src={logo} alt="" className='logoImagem' />
+                <a rel='noreferrer' target="_blank" href="https://compasso.ninja/pls/interno/home.html" >
+                    <img src={logo} alt="Imagem com logo da uol com um link para intranet" className='logoImagem' />
                 </a>
-                <img src={image} alt="" className='imageForm' />
+                <img src={image} alt="Imagem de notebook" className='imageForm' />
             </div>
         </div>
     )
