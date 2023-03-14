@@ -1,0 +1,56 @@
+.create-task{
+    width: 96%;
+    margin-top: 39px;
+    display: flex;
+    justify-content: space-between;
+    margin-left: 2%;
+}
+
+.horasMinutos, .daysWeek, .taskIssues{
+    padding: 8px;
+    border: 1px solid #FECE00;
+    border-radius: '4px';
+    background-color: '#fff';
+    width: 120px;
+    height: 45px;
+    border-radius: 18px;
+    font-weight: 14px;
+    color: rgba(0, 0, 0, 0.7);
+}
+
+.inputZone{
+    display: flex;
+    gap: 3px;
+}
+
+.daysWeek{
+    width: 240px;
+}
+
+.taskIssues {
+    width: 391px;
+}
+
+.buttonsZone{
+    display: flex;
+    gap: 3px;
+}
+
+.botaoApagar, .botaoEnviar {
+    color: #fff;
+    font-size: 20px;
+    border-radius: 10px;
+    border: none;
+    width: 200px;
+}
+
+.botaoEnviar{
+    background: #00BA88;
+   
+}
+
+.botaoApagar{
+    background: #FF3D1F;
+    
+}
+

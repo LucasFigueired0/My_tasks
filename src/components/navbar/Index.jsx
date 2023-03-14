@@ -9,6 +9,7 @@ import Weather from './climate/Clima';
 import DataHora from './dataHora/DataHora';
 //images
 import logout1 from "../../assets/img/logout1.svg"
+import logo from "../../assets/img/logo.png"
 
 
 const Navbar = () => {
@@ -16,18 +17,6 @@ const Navbar = () => {
 
   const { logado, setLogado } = useContext(UserContext);
   const navigate = useNavigate()
-
-  const [usuario, setUsuario] = useState(() => {
-    let usuario = ''
-    for (let i in dataUser) {
-      if (dataUser[i].id === logado.id) {
-        usuario = dataUser[i].firstName
-      }
-    }
-
-    return usuario;
-  }
-  );
 
   const logout = (e) => {
     e.preventDefault()
@@ -39,7 +28,7 @@ const Navbar = () => {
   return (
     <div className='container-nav'>
       <div className="week-planner">
-        <h3>Week Planner</h3>
+        <h3>Weekly Planner</h3>
         <p>Use this planner to organize your daily issues</p>
       </div>
 
@@ -51,12 +40,16 @@ const Navbar = () => {
         <Weather />
       </div>
 
-      
-      <button className='logout' onClick={logout}>
-        <img src={logout1} alt="botao sair"/>
-        <p>Logout</p>
-      </button>
-     
+
+      <div className='logout-logout'>
+        <a rel='noreferrer' target="_blank" href="https://compasso.ninja/pls/interno/home.html" >
+          <img src={logo} alt="Imagem com logo da uol com um link para intranet" className='logo_compass' />
+        </a>
+        <button className='logout' onClick={logout}>
+          <img src={logout1} alt="botao sair" />
+          <p>Logout</p>
+        </button>
+      </div>
     </div>
   )
 }
