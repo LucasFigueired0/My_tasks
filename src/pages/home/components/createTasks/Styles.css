@@ -31,6 +31,12 @@
     width: 391px;
 }
 
+.daysWeek:focus, .horasMinutos:focus, .taskIssues:focus{
+    border: 0 none;
+    outline: 0 none;
+    border: 1px solid #FECE00;;
+}
+
 .buttonsZone{
     display: flex;
     gap: 3px;
@@ -49,8 +55,16 @@
    
 }
 
-.botaoApagar{
-    background: #FF3D1F;
-    
+.botaoEnviar:active{
+    transition: background-color 0.1s ease;
+    background: #117a5e;
 }
 
+.botaoApagar{
+    background: #FF3D1F;
+}
+
+.botaoApagar:active{
+    transition: background-color 0.1s ease;
+    background: #d42408;
+}

@@ -1,5 +1,5 @@
+//Components
 import Navbar from '../../components/navbar/Index'
-
 import CreateTasks from './components/createTasks';
 
 const Index = () => {
@@ -12,4 +12,4 @@ const Index = () => {
   )
 }
 
-export default Index
+export default Index 
