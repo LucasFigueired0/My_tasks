@@ -1,0 +1,81 @@
+.container-nav {
+    margin-top: 2%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 4%;
+    /* border: 1px solid red; */
+}
+
+.week-planner {
+    display: flex;
+    width: 30%;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    color: #fff;
+    background: black;
+    border-radius: 0px 10px 10px 0px;
+    height: 64px;
+}
+
+.today {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: #3B3E45;
+}
+
+.today h1 {
+    font-size: 40px;
+}
+
+.today p {
+    font-size: 20px;
+}
+
+.clima {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: #222222;
+}
+
+.clima p {
+    font-size: 14px;
+}
+
+.temperatura {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.5rem;
+}
+
+.temperatura h1 {
+    font-size: 48px;
+}
+
+.temperatura img {
+    margin-left: 5px;
+    width: 34px;
+    height: 34px;
+}
+
+.logout {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+} 
+
+.logout img{
+    height: 20.15px;
+    width: 20.15px;
+}
+
+.logout p{
+    font-size: 17px;
+}
+
+  
+  

@@ -1,0 +1,171 @@
+.containerFormLogin {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    align-items: stretch;
+    grid-template-areas: "box-1 box-2";
+    background: linear-gradient(180deg, #33383D 0%, #1C1D20 100%);
+    height: 100vh;
+}
+
+.box_1Login {
+    grid-area: box-1;
+    background: linear-gradient(180deg, #33383D 0%, #1C1D20 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.formCadastroLogin {
+    width: 50%;
+    height: 60%;
+    text-align: center;
+    /* border: 1px solid red; */
+}
+
+
+.box_2Login {
+    grid-area: box-2;
+    background-image: url('../../assets/img/image2.png');
+    width: 100%;
+    height: 100%;
+}
+
+.areaCadastroLogin {
+    margin-bottom: 80px;
+    color: #fff;
+    text-align: left;
+}
+
+.tituloCadastroLogin {
+    font-weight: lighter;
+    font-size: 40px;
+}
+
+.tituloLogin {
+    text-align: left;
+    font-weight: lighter;
+    font-size: 30px;
+    color: #fff;
+    margin-bottom: 32px;
+}
+
+.subTituloCadastroLogin {
+    font-size: 16px;
+}
+
+
+.areaInputLoginEmail {
+
+    width: 100%;
+    height: 3rem;
+    border-radius: 50px;
+    padding: 12px 25px 14px;
+
+    border: 1px solid #fff;
+    background: linear-gradient(180deg, #33383D 0%, #1C1D20 100%);
+    background-image: url(../..//assets/img/user.png);
+    background-repeat: no-repeat;
+    background-position: bottom 50% right 5%;
+
+    color: #fff;
+}
+
+.areaInputLoginSenha {
+
+    width: 100%;
+    height: 3rem;
+    border-radius: 50px;
+    padding: 12px 25px 14px;
+
+    border: 1px solid #fff;
+    background: linear-gradient(180deg, #33383D 0%, #1C1D20 100%);
+    background-image: url(../../assets/img/cadeado.png);
+    background-repeat: no-repeat;
+    background-position: bottom 50% right 4.5%;
+
+    color: #fff;
+}
+
+.areaInputErrorLogin {
+    width: 100%;
+    height: 3rem;
+    border-radius: 50px;
+    padding: 12px 25px 14px;
+
+    border: 1px solid #FF2D04;
+    background: linear-gradient(180deg, #33383D 0%, #1C1D20 100%);
+    color: rgb(253, 0, 0);
+
+}
+
+.textInputLogin {
+    font-size: 16px;
+    text-align: left;
+    color: #fff;
+
+    width: 20%;
+}
+
+.itemCadastroLogin {
+
+    display: flex;
+    width: 100%;
+    justify-content: center;
+
+}
+
+.account {
+    color: #fff;
+}
+
+.criarConta{
+    margin-top: 50px;
+}
+
+.botaoPadraoLogin {
+    font-size: 29px;
+    font-weight: bold;
+    color: #fff;
+    margin-top: 50px;
+    margin-bottom: 40px;
+
+    width: 100%;
+    height: 3.5rem;
+    border-radius: 50px;
+    background: linear-gradient(90deg, #FF2D04 0%, #C13216 100%);
+    filter: drop-shadow(5px 5px 15px rgba(0, 0, 0, 0.5));
+}
+
+.imageFormLogin {
+    width: 100%;
+}
+
+.logoImagemLogin {
+    position: absolute;
+    width: 25%;
+    margin-left: 12.5%;
+    margin-top: 2%;
+}
+
+@media screen and (max-width: 1400px) {
+    .formCadastroLogin {
+        width: 50%;
+        height: 90%;
+        text-align: center;
+        /* border: 1px solid red; */
+    }
+
+    .botaoPadraoLogin {
+        font-size: 29px;
+        font-weight: bold;
+        color: #fff;
+        margin-top: 30px;
+        margin-bottom: 30px;
+    
+        width: 100%;
+        height: 3.5rem;
+        border-radius: 50px;
+        background: linear-gradient(90deg, #FF2D04 0%, #C13216 100%);
+        filter: drop-shadow(5px 5px 15px rgba(0, 0, 0, 0.5));
+    }
+}

@@ -1,0 +1,23 @@
+.logout {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+}
+
+.logout img {
+    height: 20.15px;
+    width: 20.15px;
+}
+
+.logout p {
+    font-size: 17px;
+}
+
+.horasMinutos {
+    padding: '8px';
+    border: '1px solid #ccc';
+    border-radius: '4px';
+    background-color: '#fff';
+    cursor: 'text';
+    width: '120px';
+}
