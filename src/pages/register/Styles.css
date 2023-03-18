@@ -99,6 +99,16 @@
     border-radius: 50px;
     background: linear-gradient(90deg, #FF2D04 0%, #C13216 100%);
     filter: drop-shadow(5px 5px 15px rgba(0, 0, 0, 0.5));
+    border: none;
+}
+
+.botaoPadrao:hover{
+    cursor: pointer;
+}
+
+.botaoPadrao:active{
+    transition: background-color 0.4s ease;
+    background: linear-gradient(90deg, #b32104 0%, #C13216 100%);
 }
 
 .imageForm{

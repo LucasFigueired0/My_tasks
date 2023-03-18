@@ -25,7 +25,7 @@ export const validateEmail = new RegExp(
 
 //Validate password[x]
 export const validatePassword = new RegExp(
-    "^(?=.*?[A-Za-z])(?=.*?[0-9]).{6,}$"
+    "^[a-zA-Z0-9]{3,30}$"
 );
 
 //Validate birth date [x]

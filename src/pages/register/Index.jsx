@@ -1,6 +1,9 @@
 import React, { useEffect, useState } from 'react'
 //Styles
 import "./Styles.css"
+//Axios
+import { registerFetch } from '../../axios/config';
+import axios from 'axios';
 //Images
 import logo from '../../assets/img/logo.svg'
 //Utils
@@ -45,6 +48,7 @@ const Register = () => {
     const navigate = useNavigate();
     //localstorage
     const [dataSend, setDataSend] = useState(getData('dados_tasks'))
+    const [statusResponse, setStatusResponse] = useState(null)
 
     useEffect(() => {
         localStorage.setItem('dados_tasks', JSON.stringify(dataSend))
@@ -105,8 +109,7 @@ const Register = () => {
         }
     };
 
-
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
 
         if ((firstName === '' || errorName === true) ||
@@ -123,37 +126,64 @@ const Register = () => {
             setErrorEmail(true)
         }
         else {
-            const chave1 = chave();
-            const data = {
-                id: chave1,
+            await registerFetch.post("/users/sign-up", {
                 firstName,
                 lastName,
                 birthDate,
-                country,
                 city,
+                country,
                 email,
                 password,
-            }
-
-            setDataSend([...dataSend, data]);
-
-            setFirstName('');
-            setLastName('');
-            setBirthDate('');
-            setCountry('');
-            setCity('');
-            setEmail('');
-            setPassword('');
-            setConfirmPassword('');
-
-            setErrorName(false);
-            setErrorLastName(false);
-            setErrorBirthDate(false);
-            setErrorCountry(false);
-            setErrorCity(false)
-            setErrorEmail(false);
-            setPasswordError(false)
-            setError('')
+                confirmPassword
+            }).then((response) => {
+                console.log(response.status)
+                console.log(response.statusText)
+                setStatusResponse(response.status);
+                if(response.status===201){
+                    alert("Account created successfully!")
+                    const chave1 = chave();
+                    const data = {
+                        id: chave1,
+                        firstName,
+                        lastName,
+                        birthDate,
+                        country,
+                        email,
+                        password,
+                        city,
+                        confirmPassword,
+                        response
+                    }
+        
+                    setDataSend([...dataSend, data]);
+        
+                    setFirstName('');
+                    setLastName('');
+                    setBirthDate('');
+                    setCountry('');
+                    setCity('');
+                    setEmail('');
+                    setPassword('');
+                    setConfirmPassword('');
+        
+                    setErrorName(false);
+                    setErrorLastName(false);
+                    setErrorBirthDate(false);
+                    setErrorCountry(false);
+                    setErrorCity(false)
+                    setErrorEmail(false);
+                    setPasswordError(false)
+                    setError('')    
+                }else if(response.status===400){
+                    alert("Ivalid input values!")
+                }else{
+                    alert("server failure!")
+                }
+            }).catch((error) => {
+                alert("Ivalid input values or server failure!")
+                console.log()
+                console.error("Erro: " + error)
+            })
 
         }
     };
