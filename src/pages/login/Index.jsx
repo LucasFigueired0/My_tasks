@@ -39,36 +39,25 @@ const Login = () => {
 
         let data1 = null;
         let dataAux = null;
+        let statusResponse = 0
+        let responseError = ''
 
         await registerFetch.post("users/sign-in", {
             email,
             password
         }).then((response) => {
             dataAux = response.data;
-            console.log(dataAux)
+            
+            // console.log(dataAux)
+
+            console.log(response.statusText)
+
+            statusResponse = response.status;
             if (response.status === 200) {
                 data1 = {
                     key: dataAux.token,
                     logado: true,
                 }
-
-                setLogado({
-                    key: data1.key,
-                    logado: data1.logado,
-                })
-
-                setChave(data1.key)
-
-                localStorage.setItem('login_tasks', JSON.stringify({
-                    key: data1.key,
-                    logado: data1.logado,
-                }));
-
-                console.log(response.status)
-                setCont(true)
-                alert('Login efuetuado com sucesso!')
-
-                navigate("/home")
 
             } else if (response.status === 400) {
                 alert("Ivalid input values!")
@@ -80,11 +69,30 @@ const Login = () => {
             // e.preventDefault
             setEmail(email);
             setPassword('');
-            alert("Ivalid input values or server failure!")
+            alert(error.response.data)
             console.error("Erro: " + error)
         })
 
-       
+        if(statusResponse === 200){
+            setLogado({
+                key: data1.key,
+                logado: data1.logado,
+            })
+
+            setChave(data1.key)
+
+            localStorage.setItem('login_tasks', JSON.stringify({
+                key: data1.key,
+                logado: data1.logado,
+            }));
+
+            
+            alert('Login efuetuado com sucesso!')
+            setCont(true)
+
+            //Isso é uma "Gambiarra" por enquanto, se puder ajudar a resolver o problema com navigate, deixe um feedback
+            window.location.reload()
+        }
     }
 
     return (
