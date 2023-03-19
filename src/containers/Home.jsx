@@ -7,11 +7,12 @@ const PrivateHome = () => {
     const navigate = useNavigate();
     const {logado} = useContext(UserContext);
 
-    useEffect(() => {
-        localStorage.setItem('login_tasks', JSON.stringify(logado));
-    }, [logado])
+    // useEffect(() => {
+    //     localStorage.setItem('login_tasks', JSON.stringify(logado));
+    // }, [logado])
     
     useEffect(() => {
+        console.log('Home: '+logado)
         if (logado.logado === false) {
             navigate('/login')
         }

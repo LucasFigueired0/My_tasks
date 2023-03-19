@@ -20,8 +20,8 @@ const Navbar = () => {
 
   const logout = (e) => {
     e.preventDefault()
-    setLogado({ id: '', logado: false })
-    localStorage.setItem('login_tasks', JSON.stringify({ id: '', logado: false, city: '' }));
+    setLogado({ key: '', logado: false })
+    localStorage.setItem('login_tasks', JSON.stringify({ key: '', logado: false}));
     navigate('/login')
   };
 

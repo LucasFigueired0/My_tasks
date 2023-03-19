@@ -3,9 +3,8 @@ import { Link, useNavigate, } from 'react-router-dom';
 
 
 import logo from '../../assets/img/logo.svg'
+import { registerFetch } from '../../axios/config';
 import UserContext from '../../contexts/userContext';
-import { getData } from '../../store/getData';
-import { validaLogin } from '../../utils/validateLogin';
 import "./Styles.css"
 
 const Login = () => {
@@ -15,39 +14,77 @@ const Login = () => {
     const [passwordError, setPasswordError] = useState(false);
 
     const { logado, setLogado } = useContext(UserContext);
+    const [cont, setCont] = useState(false);
     const navigate = useNavigate();
+    const [chave, setChave] = useState('')
+
+   
+    useEffect(()=>{
+        if(cont === true){
+            console.log("chave: ", chave)
+            navigate('/home')
+        }
+    },[cont])
 
     const changeEmail = (e) => {
         setEmail(e.target.value);
     }
-
+    
     const changePassword = (e) => {
         setPassword(e.target.value);
     }
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        let logado1 = validaLogin(email, password);
 
-        if (logado1.logado === true) {
-            setLogado({
-                id: logado1.id,
-                logado: logado1.logado,
-                city: logado1.city,
-                country: logado1.country
-            })
-            localStorage.setItem('login_tasks', JSON.stringify([{
-                id: logado1.id,
-                logado: logado1.logado,
-                city: logado1.city,
-                country: logado1.country
-            }]));
-            navigate('/home')
-        } else {
-            e.preventDefault();
+        let data1 = null;
+        let dataAux = null;
+
+        await registerFetch.post("users/sign-in", {
+            email,
+            password
+        }).then((response) => {
+            dataAux = response.data;
+            console.log(dataAux)
+            if (response.status === 200) {
+                data1 = {
+                    key: dataAux.token,
+                    logado: true,
+                }
+
+                setLogado({
+                    key: data1.key,
+                    logado: data1.logado,
+                })
+
+                setChave(data1.key)
+
+                localStorage.setItem('login_tasks', JSON.stringify({
+                    key: data1.key,
+                    logado: data1.logado,
+                }));
+
+                console.log(response.status)
+                setCont(true)
+                alert('Login efuetuado com sucesso!')
+
+                navigate("/home")
+
+            } else if (response.status === 400) {
+                alert("Ivalid input values!")
+            } else {
+                alert("server failure!")
+            }
+            // console.log(response.request)
+        }).catch((error) => {
+            // e.preventDefault
             setEmail(email);
             setPassword('');
-        }
+            alert("Ivalid input values or server failure!")
+            console.error("Erro: " + error)
+        })
+
+       
     }
 
     return (

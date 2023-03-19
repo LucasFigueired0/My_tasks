@@ -3,5 +3,5 @@ export const getData = (chave) => {
     if (dados) {
       return JSON.parse(dados);
     }
-    return [];
+    return {key:'',logado: false};
 }

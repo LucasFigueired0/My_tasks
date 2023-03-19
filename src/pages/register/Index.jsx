@@ -181,7 +181,7 @@ const Register = () => {
                 }
             }).catch((error) => {
                 alert("Ivalid input values or server failure!")
-                console.log()
+                
                 console.error("Erro: " + error)
             })
 
