@@ -27,7 +27,7 @@ function Weather() {
   
     return (
       <div className='clima'>
-        <p>{logado.city} - {logado.country}</p>
+        <p>{"Oriximiná"} - {"Brasil"}</p>
         <div className="temperatura">
           <img src={clima} alt="Nuvem com" />
           <h1>{Math.round(temperatura)}°</h1>

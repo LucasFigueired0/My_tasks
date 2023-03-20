@@ -19,6 +19,13 @@
     gap: 14px;
 }
 
+.items-listError{
+    width: 96%;
+    display: flex;
+    /* overflow-x: scroll; */
+    flex-direction: row;
+}
+
 .time-txt {
     color: #3B3E45;
     width: 85px;
