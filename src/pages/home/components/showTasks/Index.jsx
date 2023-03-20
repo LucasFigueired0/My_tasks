@@ -12,7 +12,11 @@ const ShowTasks = ({ daySelect, allItems }) => {
     const [allTasks, setAllTasks] = useState([]);
     const { cont, setCont } = useContext(TaskContext);
     const [tasks, setTasks] = useState(null)
-    const [idDelete, setIdDelete] = useState(null)
+    const [classeErro, setClasseErro] = useState(null)
+    const [totIgual, setTotIgual] = useState(0);
+
+
+
 
     const postTask = async () => {
         let dataAux = ''
@@ -43,16 +47,14 @@ const ShowTasks = ({ daySelect, allItems }) => {
             const response = await tasksFetch.get('/events');
             const data = response.data.events;
             let dataAux = data.map((dados) => ({
-                time: dados.description,
+                time: dados.description.slice(0, 5),
                 dayOfWeek: dados.dayOfWeek,
-                description: dados.description,
+                description: dados.description.slice(5),
                 _id: dados._id,
                 userId: dados.userId,
                 isRepeat: 'nao'
             })
             )
-
-            let lastData = [{}]
 
             for (let i = 0; i < dataAux.length; i++) {
                 for (let j = i + 1; j < dataAux.length; j++) {
@@ -62,19 +64,23 @@ const ShowTasks = ({ daySelect, allItems }) => {
                     ) {
                         dataAux[i].isRepeat = 'sim';
                         dataAux[j].isRepeat = 'sim';
+                        
                     }
                 }
             }
 
-            setAllTasks(dataAux.map((dados) => ({
-                time: dados.description.slice(0, 5),
-                dayOfWeek: dados.dayOfWeek,
-                description: dados.description.slice(5),
-                _id: dados._id,
-                userId: dados.userId,
-                isRepeat: dados.isRepeat
-            })
-            ))
+
+            setAllTasks(
+                dataAux.map((dados) => ({
+                    time: dados.time,
+                    dayOfWeek: dados.dayOfWeek,
+                    description: dados.description,
+                    _id: dados._id,
+                    userId: dados.userId,
+                    isRepeat: dados.isRepeat
+                }))
+                    .sort((a, b) => a.time.localeCompare(b.time))
+            );
 
             allItems(response.data.events)
         } catch (error) {
@@ -113,26 +119,24 @@ const ShowTasks = ({ daySelect, allItems }) => {
                     <p>Time</p>
                 </div>
                 {allTasks.length === 0 ? "Nenhuma tarefa inda" : (
-                    allTasks.filter(dados => dados.dayOfWeek === daySelect)
-                        .sort((a, b) => a.time.localeCompare(b.time))
+                    allTasks.filter((dados) => dados.dayOfWeek === daySelect)
                         .map((dados) => (
-                            <div key={dados._id} className="task">
-                                {/* <div className='time'></div>
-                                {dados.time} {dados.description} */}
-                                <ItemTask
-                                    time={dados.time}
-                                    description={dados.description}
-                                    weekDay={daySelect}
-                                    deleteItem={deleteTaskItem}
-                                    idItem={dados._id}
-                                    repeat={dados.isRepeat}
-                                    dados={allTasks}
-                                />
-                            </div>
+                                (<div className="task" key={dados._id}>
+                                    <ItemTask
+                                        time={dados.time}
+                                        description={dados.description}
+                                        weekDay={daySelect}
+                                        deleteItem={deleteTaskItem}
+                                        idItem={dados._id}
+                                        repeat={dados.isRepeat}
+                                        dados={allTasks}
+                                    />
+                                </div>)
+                                
                         ))
                 )}
             </div>
-        </div>
+        </div >
     )
 }
 
