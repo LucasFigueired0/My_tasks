@@ -147,8 +147,14 @@
     background: #eb2f12;
 }
 
-.repeat{
-    background: #6e6260;   
+.sim-time {
+    background: linear-gradient(0deg, #DCDFE3, #DCDFE3),
+        linear-gradient(0deg, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7));
+
+}
+
+.repeat {
+    background: #6e6260;
 }
 
 .monday-desc {
@@ -183,5 +189,3 @@
 .sunday-time {
     background: rgba(255, 0, 36, 0.5);
 }
-
-
