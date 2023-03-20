@@ -1,6 +1,6 @@
 import React from 'react'
 import "./Styles.css"
-const ItemTask = ({ time, description, weekDay, deleteItem, idItem, repeat }) => {
+const ItemTask = ({ time, description, weekDay, deleteItem, idItem, repeat, dados }) => {
 
     const onClickDelete = () =>{
         deleteItem(idItem)
