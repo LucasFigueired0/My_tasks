@@ -10,25 +10,31 @@ const Index = () => {
   const [cadTask, setCadTask] = useState(null)
   const [daySelect, setDaySelect] = useState('monday')
   const [totalItems, setTotalItens] = useState(null)
+  const [cont, setCont] = useState(0);
 
   const handleDaySelect = (day) =>{
     setDaySelect(day)
   }
 
   const handleTotalItems = (items) =>{
-    setTotalItens(items)
-    console.log("Home")
-    console.log(items)
+    let ids = items.map((dados)=>({id: dados._id}))
+    setTotalItens(ids)
+    // console.log("Home")
+    // console.log(ids)
+  }
+
+  const handleCont = (value) =>{
+    setCont(value)
   }
 
   return (
 
     <div>
-      <TaskContext.Provider value={{ cadTask, setCadTask }}>
+      <TaskContext.Provider value={{ cadTask, setCadTask, cont, setCont}}>
         <Navbar />
-        <CreateTasks />
+        <CreateTasks arr={totalItems} cont={handleCont}/>
         <WeekDayBar onDaySelect={handleDaySelect}/>
-        <ShowTasks daySelect={daySelect} allItems={handleTotalItems}/>
+        <ShowTasks daySelect={daySelect} allItems={handleTotalItems} contador={cont}/>
       </TaskContext.Provider>
     </div>
   )

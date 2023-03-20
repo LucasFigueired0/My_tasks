@@ -1,10 +1,19 @@
-.create-task {
-    width: 96%;
+.container-create{
+    display: flex;
+    align-items: center;
+    justify-content: center;
     margin-top: 39px;
+    margin-bottom: 29px;
+    gap: 16px;
+    width: 96%;
+    margin-left: 2%;
+}
+
+.create-task {
+    width: 100%;
     display: flex;
     justify-content: space-between;
-    margin-left: 2%;
-    margin-bottom: 29px;
+    
 }
 
 .horasMinutos,
@@ -41,7 +50,7 @@
     border: 0 none;
     outline: 0 none;
     border: 1px solid #FECE00;
-    ;
+    
 }
 
 .buttonsZone {
@@ -56,6 +65,7 @@
     border-radius: 10px;
     border: none;
     width: 200px;
+    cursor: pointer;
 }
 
 .botaoEnviar {
@@ -74,6 +84,8 @@
 
 .botaoApagar {
     background: #FF3D1F;
+    height: 45px;
+    width: 200px;
 }
 
 .botaoApagar:hover {

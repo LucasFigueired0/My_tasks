@@ -35,7 +35,7 @@ const WeekDayBar = ({onDaySelect}) => {
     setFridaySize(size);
     setSaturdaySize(size)
     setSundaySize(size)
-    onDaySelect('saturday');
+    onDaySelect('tuesday');
   };
 
   const clickWednesday = () =>{

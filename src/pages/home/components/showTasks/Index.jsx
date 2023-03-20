@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from 'react'
 import { tasksFetch } from '../../../../axios/config';
 import TaskContext from '../../../../contexts/taskContext'
 import ItemTask from '../itemTask/Index';
+import uol from "../../../../assets/img/uol.png"
 
 import "./Styles.css"
 
@@ -9,7 +10,7 @@ const ShowTasks = ({ daySelect, allItems }) => {
     const { cadTask } = useContext(TaskContext);
 
     const [allTasks, setAllTasks] = useState([]);
-    const [cont, setCont] = useState(0);
+    const { cont, setCont } = useContext(TaskContext);
     const [tasks, setTasks] = useState(null)
     const [idDelete, setIdDelete] = useState(null)
 
@@ -26,7 +27,7 @@ const ShowTasks = ({ daySelect, allItems }) => {
             dayOfWeek
         }).then((response) => {
             dataAux = response.data;
-
+            setCont(prevState => prevState + 1)
             alert(response.statusText)
 
         }).catch((error) => {
@@ -41,17 +42,41 @@ const ShowTasks = ({ daySelect, allItems }) => {
         try {
             const response = await tasksFetch.get('/events');
             const data = response.data.events;
+            let dataAux = data.map((dados) => ({
+                time: dados.description,
+                dayOfWeek: dados.dayOfWeek,
+                description: dados.description,
+                _id: dados._id,
+                userId: dados.userId,
+                isRepeat: 'nao'
+            })
+            )
 
-            setAllTasks(data.map((dados) => ({
+            let lastData = [{}]
+
+            for (let i = 0; i < dataAux.length; i++) {
+                for (let j = i + 1; j < dataAux.length; j++) {
+                    if (
+                        dataAux[i].time === dataAux[j].time &&
+                        dataAux[i].dayOfWeek === dataAux[j].dayOfWeek
+                    ) {
+                        dataAux[i].isRepeat = 'sim';
+                        dataAux[j].isRepeat = 'sim';
+                    }
+                }
+            }
+
+            setAllTasks(dataAux.map((dados) => ({
                 time: dados.description.slice(0, 5),
                 dayOfWeek: dados.dayOfWeek,
                 description: dados.description.slice(5),
                 _id: dados._id,
-                userId: dados.userId
+                userId: dados.userId,
+                isRepeat: dados.isRepeat
             })
             ))
 
-            allItems(data.events)
+            allItems(response.data.events)
         } catch (error) {
             console.log(error)
         }
@@ -76,6 +101,7 @@ const ShowTasks = ({ daySelect, allItems }) => {
     }, [cadTask])
 
     useEffect(() => {
+        console.log(allTasks)
         getTask()
     }, [cont])
 
@@ -99,6 +125,8 @@ const ShowTasks = ({ daySelect, allItems }) => {
                                     weekDay={daySelect}
                                     deleteItem={deleteTaskItem}
                                     idItem={dados._id}
+                                    repeat={dados.isRepeat}
+                                    dados={allTasks}
                                 />
                             </div>
                         ))

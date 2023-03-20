@@ -10,12 +10,12 @@ export const validateLastName = new RegExp(
 
 // Validate Country[x]
 export const validateCountry = new RegExp(
-    "^[a-zA-ZÀ-ÖØ-öø-ÿ]{3,90}$"
+    "^[a-zA-ZÀ-ÖØ-öø-ÿ ]{3,90}$"
 );
 
 //Validade city[x]
 export const validateCity = new RegExp(
-    "^[a-zA-ZÀ-ÖØ-öø-ÿ]{1,90}$"
+    "^[a-zA-ZÀ-ÖØ-öø-ÿ ]{1,90}$"
 );
 
 //Validate Email[x]

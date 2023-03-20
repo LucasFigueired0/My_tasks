@@ -18,18 +18,18 @@ const Login = () => {
     const navigate = useNavigate();
     const [chave, setChave] = useState('')
 
-   
-    useEffect(()=>{
-        if(cont === true){
+
+    useEffect(() => {
+        if (cont === true) {
             console.log("chave: ", chave)
             navigate('/home')
         }
-    },[cont])
+    }, [cont])
 
     const changeEmail = (e) => {
         setEmail(e.target.value);
     }
-    
+
     const changePassword = (e) => {
         setPassword(e.target.value);
     }
@@ -47,22 +47,15 @@ const Login = () => {
             password
         }).then((response) => {
             dataAux = response.data;
-         
+
             console.log(response.statusText)
 
             statusResponse = response.status;
-            if (response.status === 200) {
-                data1 = {
-                    key: dataAux.token,
-                    logado: true,
-                }
-
-            } else if (response.status === 400) {
-                alert("Ivalid input values!")
-            } else {
-                alert("server failure!")
+            data1 = {
+                key: dataAux.token,
+                logado: true,
             }
-            
+
         }).catch((error) => {
             // e.preventDefault
             setEmail(email);
@@ -71,7 +64,7 @@ const Login = () => {
             console.error("Erro: " + error)
         })
 
-        if(statusResponse === 200){
+        if (statusResponse === 200) {
             setLogado({
                 key: data1.key,
                 logado: data1.logado,
@@ -84,11 +77,12 @@ const Login = () => {
                 logado: data1.logado,
             }));
 
-            
+
             alert('Login successfully completed!')
             setCont(true)
 
             //Isso é uma "Gambiarra" por enquanto, se puder ajudar a resolver o problema com navigate, deixe um feedback
+            // navigate("/home")
             window.location.reload()
         }
     }
