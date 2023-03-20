@@ -155,7 +155,7 @@ const Register = () => {
                         response
                     }
         
-                    setDataSend([...dataSend, data]);
+                    
         
                     setFirstName('');
                     setLastName('');
@@ -174,6 +174,7 @@ const Register = () => {
                     setErrorEmail(false);
                     setPasswordError(false)
                     setError('')    
+                    navigate('/login')
                 }else if(response.status===400){
                     alert("Ivalid input values!")
                 }else{

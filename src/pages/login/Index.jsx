@@ -57,7 +57,6 @@ const Login = () => {
             }
 
         }).catch((error) => {
-            // e.preventDefault
             setEmail(email);
             setPassword('');
             alert(error.response.data)

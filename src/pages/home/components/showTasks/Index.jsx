@@ -64,7 +64,7 @@ const ShowTasks = ({ daySelect, allItems }) => {
                     ) {
                         dataAux[i].isRepeat = 'sim';
                         dataAux[j].isRepeat = 'sim';
-                        
+
                     }
                 }
             }
@@ -121,18 +121,17 @@ const ShowTasks = ({ daySelect, allItems }) => {
                 {allTasks.length === 0 ? "Nenhuma tarefa inda" : (
                     allTasks.filter((dados) => dados.dayOfWeek === daySelect)
                         .map((dados) => (
-                                (<div className="task" key={dados._id}>
-                                    <ItemTask
-                                        time={dados.time}
-                                        description={dados.description}
-                                        weekDay={daySelect}
-                                        deleteItem={deleteTaskItem}
-                                        idItem={dados._id}
-                                        repeat={dados.isRepeat}
-                                        dados={allTasks}
-                                    />
-                                </div>)
-                                
+                            (<div className="task" key={dados._id}>
+                                <ItemTask
+                                    time={dados.time}
+                                    description={dados.description}
+                                    weekDay={daySelect}
+                                    deleteItem={deleteTaskItem}
+                                    idItem={dados._id}
+                                    repeat={dados.isRepeat}
+                                    dados={allTasks}
+                                />
+                            </div>)
                         ))
                 )}
             </div>
