@@ -1,17 +1,21 @@
-import React, { useContext, useEffect} from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import Home from '../pages/home/Index'
 import UserContext from '../contexts/userContext';
+import { getData } from '../store/getData';
 
 const PrivateHome = () => {
     const navigate = useNavigate();
-    const {logado} = useContext(UserContext);
+    const { logado, setLogado } = useContext(UserContext);
+    const [logar, setLogar] = useState(getData('login_tasks'))
 
     useEffect(() => {
-        localStorage.setItem('login_tasks', JSON.stringify(logado));
-    }, [logado])
-    
-    useEffect(() => {
+        
+        setLogado({
+            key: logar.key,
+            logado: logar.logado,
+        })
+        
         if (logado.logado === false) {
             navigate('/login')
         }

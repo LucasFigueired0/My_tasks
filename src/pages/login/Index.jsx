@@ -3,9 +3,8 @@ import { Link, useNavigate, } from 'react-router-dom';
 
 
 import logo from '../../assets/img/logo.svg'
+import { registerFetch } from '../../axios/config';
 import UserContext from '../../contexts/userContext';
-import { getData } from '../../store/getData';
-import { validaLogin } from '../../utils/validateLogin';
 import "./Styles.css"
 
 const Login = () => {
@@ -15,7 +14,17 @@ const Login = () => {
     const [passwordError, setPasswordError] = useState(false);
 
     const { logado, setLogado } = useContext(UserContext);
+    const [cont, setCont] = useState(false);
     const navigate = useNavigate();
+    const [chave, setChave] = useState('')
+
+
+    useEffect(() => {
+        if (cont === true) {
+            console.log("chave: ", chave)
+            navigate('/home')
+        }
+    }, [cont])
 
     const changeEmail = (e) => {
         setEmail(e.target.value);
@@ -25,28 +34,56 @@ const Login = () => {
         setPassword(e.target.value);
     }
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        let logado1 = validaLogin(email, password);
 
-        if (logado1.logado === true) {
-            setLogado({
-                id: logado1.id,
-                logado: logado1.logado,
-                city: logado1.city,
-                country: logado1.country
-            })
-            localStorage.setItem('login_tasks', JSON.stringify([{
-                id: logado1.id,
-                logado: logado1.logado,
-                city: logado1.city,
-                country: logado1.country
-            }]));
-            navigate('/home')
-        } else {
-            e.preventDefault();
+        let data1 = null;
+        let dataAux = null;
+        let statusResponse = 0
+
+
+        await registerFetch.post("users/sign-in", {
+            email,
+            password
+        }).then((response) => {
+            dataAux = response.data;
+
+            console.log(response.statusText)
+
+            statusResponse = response.status;
+            data1 = {
+                key: dataAux.token,
+                logado: true,
+            }
+
+        }).catch((error) => {
+            // e.preventDefault
             setEmail(email);
             setPassword('');
+            alert(error.response.data)
+            console.error("Erro: " + error)
+        })
+
+        if (statusResponse === 200) {
+            setLogado({
+                key: data1.key,
+                logado: data1.logado,
+            })
+
+            setChave(data1.key)
+
+            localStorage.setItem('login_tasks', JSON.stringify({
+                key: data1.key,
+                logado: data1.logado,
+            }));
+
+
+            alert('Login successfully completed!')
+            setCont(true)
+
+            //Isso é uma "Gambiarra" por enquanto, se puder ajudar a resolver o problema com navigate, deixe um feedback
+            // navigate("/home")
+            window.location.reload()
         }
     }
 

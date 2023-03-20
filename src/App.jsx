@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 
 import './App.css'
 import { getData } from "./store/getData"
@@ -9,16 +9,16 @@ function App() {
   const [dadosLogin] = useState(getData('login_tasks'))
 
   const [logado, setLogado] = useState(() => {
-    let logado1 = dadosLogin
+    // let logado1 = dadosLogin
     console.log(dadosLogin)
-    if (logado1 === undefined) {
-      return {id: '', logado: false, city: ''}
-    } 
-    else if (dadosLogin.logado === false) {
-      return {id: '', logado: false, city: ''}
+   
+    if (dadosLogin.logado === false) {
+      console.log('Aqui')
+      return {key: '', logado: false}
     }
     else {
-      return {id: dadosLogin.id, logado: true, city: dadosLogin.city}
+      console.log('Aqui')
+      return {key: dadosLogin.key, logado: true}
     }
   })
 

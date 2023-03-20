@@ -1,36 +1,48 @@
+import { registerFetch } from "../axios/config";
 import { getData } from "../store/getData";
 
-export const validaLogin = (email, password) => {
-    const dataUser = getData('dados_tasks');
-    let logado = false;
-    let id1 = '';
-    let city = '';
-    let country = ''
+export const validaLogin = async (email, password) => {
+   
+    let dados = null
+    let data = null
 
-    for (let i in dataUser) {
-        if (email === dataUser[i].email && password === dataUser[i].password) {
-            logado = true;
-            id1 = dataUser[i].id;
-            city = dataUser[i].city;
-            country = dataUser[i].country;
+    await registerFetch.post("/users/sign-in", {
+        email,
+        password
+    }).then((response) => {
+        dados = response.data
+        if (response.status === 200) {
+            data = {
+                key: dados.key,
+                logado: true
+            }
+            alert("Login efetuado com sucesso!")
+            return data;
+        } else if (response.status === 400) {
+            data = {
+                key: "",
+                logado: false
+            }
+            alert("Ivalid input values!")
+            return data;
+        } else {
+            data = {
+                key: "",
+                logado: false
+            }
+            alert("server failure!")
+            return data;
         }
-    }
-
-    if(logado===true){
-        const dados={
-            id:id1,
-            logado: true,
-            city: city,
-            country: country
-        };
-        
-        return dados;
-      
-    }else{
-        const dados = {
-            id: '',
+    }).catch((error) => {
+        data = {
+            key: "",
             logado: false
         }
-        return dados;
-    }
+        alert("Ivalid input values or server failure!")
+        console.error("Erro: " + error)
+        return data;
+    })
+
+    
 }
+

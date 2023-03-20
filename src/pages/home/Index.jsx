@@ -1,42 +1,43 @@
-import React, { useEffect, useState } from 'react'
+//Components
+import { useEffect, useState } from 'react';
 import Navbar from '../../components/navbar/Index'
-import { horasMinutos } from '../../utils/horasMinutos';
+import TaskContext from '../../contexts/taskContext';
+import CreateTasks from './components/createTasks';
+import ShowTasks from './components/showTasks/Index';
+import WeekDayBar from './components/weekDayBar/Index';
 
 const Index = () => {
-  const [opcao, setOpcao] = useState('');
+  const [cadTask, setCadTask] = useState(null)
+  const [daySelect, setDaySelect] = useState('monday')
+  const [totalItems, setTotalItens] = useState(null)
+  const [cont, setCont] = useState(0);
 
-  const opcoes = horasMinutos().map((hora) => (
-    <option key={hora} value={hora}>{hora}</option>
-  ));
-  useEffect(()=>{
-    opcoes
-  },[])
+  const handleDaySelect = (day) =>{
+    setDaySelect(day)
+  }
 
-  const handleChange = (event) => {
-    setOpcao(event.target.value);
-    console.log(event.target.value)
-  };
+  const handleTotalItems = (items) =>{
+    let ids = items.map((dados)=>({id: dados._id}))
+    setTotalItens(ids)
+    // console.log("Home")
+    // console.log(ids)
+  }
+
+  const handleCont = (value) =>{
+    setCont(value)
+  }
+
   return (
-    <div>
-      <Navbar />
-      <div className='hora'>
-        <input
-          type="text"
-          id="select-editavel"
-          value={opcao}
-          onChange={handleChange}
-          list="opcoes"
-          placeholder='01h:30m'
-          className='horasMinutos'
-        />
-        <datalist id="opcoes">
-          {opcoes}
-        </datalist>
-        
-      </div>
 
+    <div>
+      <TaskContext.Provider value={{ cadTask, setCadTask, cont, setCont}}>
+        <Navbar />
+        <CreateTasks arr={totalItems} cont={handleCont}/>
+        <WeekDayBar onDaySelect={handleDaySelect}/>
+        <ShowTasks daySelect={daySelect} allItems={handleTotalItems} contador={cont}/>
+      </TaskContext.Provider>
     </div>
   )
 }
 
-export default Index
+export default Index 

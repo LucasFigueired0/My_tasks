@@ -1,0 +1,135 @@
+.container-create{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 39px;
+    margin-bottom: 29px;
+    gap: 16px;
+    width: 96%;
+    margin-left: 2%;
+}
+
+.create-task {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    
+}
+
+.horasMinutos,
+.daysWeek,
+.taskIssues {
+    padding: 8px;
+    border: 1px solid #FECE00;
+    background-color: #fff;
+    width: 120px;
+    height: 45px;
+    border-radius: 18px;
+    font-weight: 14px;
+    color: rgba(0, 0, 0, 0.7);
+}
+
+.inputZone {
+    display: flex;
+    gap: 3px;
+}
+
+.daysWeek {
+    width: 240px;
+}
+
+.taskIssues {
+    width: 391px;
+}
+
+
+
+.daysWeek:focus,
+.horasMinutos:focus,
+.taskIssues:focus {
+    border: 0 none;
+    outline: 0 none;
+    border: 1px solid #FECE00;
+    
+}
+
+.buttonsZone {
+    display: flex;
+    gap: 3px;
+}
+
+.botaoApagar,
+.botaoEnviar {
+    color: #fff;
+    font-size: 20px;
+    border-radius: 10px;
+    border: none;
+    width: 200px;
+    cursor: pointer;
+}
+
+.botaoEnviar {
+    background: #00BA88;
+}
+
+.botaoEnviar:hover {
+    transition: background-color 0.2s ease;
+    background: #25e9b5;
+}
+
+.botaoEnviar:active {
+    transition: background-color 0.1s ease;
+    background: #00BA88;
+}
+
+.botaoApagar {
+    background: #FF3D1F;
+    height: 45px;
+    width: 200px;
+}
+
+.botaoApagar:hover {
+    transition: background-color 0.1s ease;
+    background: #fa624a;
+}
+
+.botaoApagar:active {
+    transition: background-color 0.1s ease;
+    background: #FF3D1F;
+}
+
+/* Error-zone */
+
+.textoInput{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.taskIssuesError{
+    padding: 8px;
+    border: 1px solid #FF3D1F;
+    background-color: #fff;
+    width: 120px;
+    height: 45px;
+    border-radius: 18px;
+    font-weight: 14px;
+    color: rgba(0, 0, 0, 0.7);
+}
+
+.taskIssuesError{
+    width: 391px;
+}
+
+.taskIssuesError{
+    border: 0 none;
+    outline: 0 none;
+    border: 1px solid #FF3D1F;
+    ;
+}
+
+.spanError{
+    color: #FF3D1F;
+    margin-top: none;
+    font-size: 10px;
+}

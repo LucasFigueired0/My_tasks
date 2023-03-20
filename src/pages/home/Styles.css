@@ -13,11 +13,3 @@
     font-size: 17px;
 }
 
-.horasMinutos {
-    padding: '8px';
-    border: '1px solid #ccc';
-    border-radius: '4px';
-    background-color: '#fff';
-    cursor: 'text';
-    width: '120px';
-}
