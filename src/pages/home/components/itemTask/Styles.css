@@ -1,0 +1,103 @@
+.new-item-task {
+    display: flex;
+    gap: 17px;
+}
+
+.new-time {
+    width: 85px;
+    height: 85px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 17px;
+    border-bottom: 1px solid #DCDFE3;
+    border-radius: 10px;
+    line-height: 20px;
+
+}
+
+.new-desc {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 85px;
+    width: 512px;
+    left: 126px;
+    top: 360px;
+    border-radius: 15px;
+    background: #fff;
+    filter: drop-shadow(0px 4px 24px rgba(168, 168, 168, 0.25));
+}
+
+
+.new-desc p {
+    width: 80%;
+    text-align: left;
+}
+
+.color-desc {
+    width: 14px;
+    height: 85px;
+    left: 127px;
+    top: 360px;
+    background: #FF0024;
+    border-radius: 15px 0px 0px 15px;
+}
+
+.new-desc button {
+    border: none;
+    width: 57px;
+    height: 25px;
+    left: 574px;
+    top: 366px;
+    background: #FF3D1F;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-bottom: 75%;
+    margin-right: 7px;
+    color: #fff;
+    font-family: 'Mulish';
+    font-style: normal;
+    font-weight: 800;
+    font-size: 14px;
+}
+
+.new-desc button:active {
+    transition: background-color 0.1s ease;
+    background: #eb2f12;
+}
+
+.monday-desc {
+    background: #FF0024;
+}
+
+.monday-time {
+    background: #FF0024;
+}
+
+.tuesday-time {
+    background: #FF8000;
+}
+
+.wednesday-time {
+    background: #FFCE00;
+}
+
+.thursday-time {
+    background-color: rgba(255, 0, 36, 0.7);
+    background-size: contain;
+}
+
+.friday-time {
+    background: rgba(255, 128, 0, 0.7);
+}
+
+.saturday-time {
+    background: rgba(255, 206, 0, 0.7);
+}
+
+.sunday-time {
+    background: rgba(255, 0, 36, 0.5);
+}

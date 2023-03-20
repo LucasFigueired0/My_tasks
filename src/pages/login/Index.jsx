@@ -40,16 +40,14 @@ const Login = () => {
         let data1 = null;
         let dataAux = null;
         let statusResponse = 0
-        let responseError = ''
+
 
         await registerFetch.post("users/sign-in", {
             email,
             password
         }).then((response) => {
             dataAux = response.data;
-            
-            // console.log(dataAux)
-
+         
             console.log(response.statusText)
 
             statusResponse = response.status;
@@ -64,7 +62,7 @@ const Login = () => {
             } else {
                 alert("server failure!")
             }
-            // console.log(response.request)
+            
         }).catch((error) => {
             // e.preventDefault
             setEmail(email);
@@ -87,7 +85,7 @@ const Login = () => {
             }));
 
             
-            alert('Login efuetuado com sucesso!')
+            alert('Login successfully completed!')
             setCont(true)
 
             //Isso é uma "Gambiarra" por enquanto, se puder ajudar a resolver o problema com navigate, deixe um feedback

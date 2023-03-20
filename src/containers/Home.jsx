@@ -9,10 +9,6 @@ const PrivateHome = () => {
     const { logado, setLogado } = useContext(UserContext);
     const [logar, setLogar] = useState(getData('login_tasks'))
 
-    // useEffect(() => {
-
-    // }, [])
-
     useEffect(() => {
         
         setLogado({

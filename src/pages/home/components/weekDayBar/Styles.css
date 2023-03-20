@@ -1,0 +1,56 @@
+.week-day-bar {
+    height: 33px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 3px;
+    margin-top: 10px;
+    background: #F5F5F5;
+}
+
+.week-day-bar button{
+    display: flex;
+    align-items: center;
+    height: 100%;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 20px;
+    width: 150px;
+    border-radius: 9px 9px 0px 0px;
+    border: none;
+}
+
+.week-day-bar button:hover{
+    cursor: pointer;
+}
+
+.monday {
+    background: #FF0024;
+}
+
+.tuesday {
+    background: #FF8000;
+}
+
+.wednesday {
+    background: #FFCE00;
+}
+
+.thursday {
+    background: rgba(255, 0, 36, 0.7);
+}
+
+.friday {
+    background: rgba(255, 128, 0, 0.7);
+}
+
+.saturday{
+    background: rgba(255, 206, 0, 0.7);
+}
+
+.sunday{
+    background: rgba(255, 0, 36, 0.5);
+}
+
+

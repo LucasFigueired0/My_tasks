@@ -13,7 +13,7 @@ function Weather() {
       async function fetchWeather() {
 
         const response = await axios.get(
-          `https://api.openweathermap.org/data/2.5/weather?q=${logado.city}&appid=e34a6c2f024a17700b6fe0e223ef6c5c&units=metric`
+          `https://api.openweathermap.org/data/2.5/weather?q=Oriximiná&appid=e34a6c2f024a17700b6fe0e223ef6c5c&units=metric`
         );
         setTemperatura(response.data.main.temp);
       }
