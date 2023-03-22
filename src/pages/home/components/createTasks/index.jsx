@@ -7,19 +7,20 @@ import { validateText } from '../../../../utils/validateTask';
 import TaskContext from '../../../../contexts/taskContext';
 import { tasksFetch } from '../../../../axios/config';
 
-const CreateTasks = ({ arr }) => {
+const CreateTasks = () => {
     const [optionWeek, setOptionWeek] = useState([]);
     const [optionTime, setOptionTime] = useState([]);
 
     const [taskText, setTaskText] = useState('');
-    const [taskWeek, setTaskWeek] = useState('Monday');
+    const [taskWeek, setTaskWeek] = useState('monday');
     const [taskClock, setTaskClock] = useState('');
 
     const [taskTextError, setTaskTextError] = useState(false);
     const [taskClockError, setTaskClockError] = useState(false);
     const { cadTask, setCadTask } = useContext(TaskContext);
 
-    const {cont, setCont} = useContext(TaskContext)
+    const { cont, setCont } = useContext(TaskContext);
+    const { allItems , setAllItems} = useContext(TaskContext);
 
     useEffect(() => {
         setOptionWeek(daysWeek().map((dia) => (
@@ -28,21 +29,24 @@ const CreateTasks = ({ arr }) => {
     }, [])
 
     const deleteAllTaskItem = async () => {
-        
-        if (arr !== null || arr !== undefined) {
+        console.log(allItems)
+        if (allItems !== null || allItems !== undefined) {
             let okay = null
-            for (let i in arr) {
-                try {
-                    const response = await tasksFetch.delete(`events/${arr[i].id}`);
-                    console.log('Item deletado com sucesso!');
-                    console.log(response.data)
-                    okay = "Okay"
-                } catch (error) {
-                    console.log(error)
+            for (let i in allItems) {
+                if (allItems[i].dayOfWeek === taskWeek) {
+                    console.log(allItems[i].dayOfWeek)
+                    try {
+                        const response = await tasksFetch.delete(`events/${allItems[i]._id}`);
+                        console.log('Item deletado com sucesso!');
+                        console.log(response.data)
+                        okay = "Okay"
+                    } catch (error) {
+                        console.log(error)
+                    }
                 }
             }
 
-            if(okay !== null){
+            if (okay !== null) {
                 setCont(prevState => prevState + 1)
                 alert('Itens apagados com sucesso!')
             }

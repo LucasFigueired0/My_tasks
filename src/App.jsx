@@ -9,16 +9,16 @@ function App() {
   const [dadosLogin] = useState(getData('login_tasks'))
 
   const [logado, setLogado] = useState(() => {
-    // let logado1 = dadosLogin
+    
     console.log(dadosLogin)
    
     if (dadosLogin.logado === false) {
       console.log('Aqui')
-      return {key: '', logado: false}
+      return {key: '', logado: false, city: '', country:''}
     }
     else {
       console.log('Aqui')
-      return {key: dadosLogin.key, logado: true}
+      return {key: dadosLogin.key, logado: true, city: dadosLogin.city, country: dadosLogin.country}
     }
   })
 

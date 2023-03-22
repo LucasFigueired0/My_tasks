@@ -6,7 +6,7 @@ import uol from "../../../../assets/img/uol.png"
 
 import "./Styles.css"
 
-const ShowTasks = ({ daySelect, allItems }) => {
+const ShowTasks = ({ daySelect}) => {
     const { cadTask } = useContext(TaskContext);
 
     const [allTasks, setAllTasks] = useState([]);
@@ -14,6 +14,7 @@ const ShowTasks = ({ daySelect, allItems }) => {
     const [tasks, setTasks] = useState(null)
     const [classeErro, setClasseErro] = useState(null)
     const [totIgual, setTotIgual] = useState(0);
+    const {allItems, setAllItems} = useContext(TaskContext);
 
 
 
@@ -32,7 +33,7 @@ const ShowTasks = ({ daySelect, allItems }) => {
         }).then((response) => {
             dataAux = response.data;
             setCont(prevState => prevState + 1)
-            alert(response.statusText)
+            
 
         }).catch((error) => {
             // alert(error.response.data)
@@ -82,7 +83,9 @@ const ShowTasks = ({ daySelect, allItems }) => {
                     .sort((a, b) => a.time.localeCompare(b.time))
             );
 
-            allItems(response.data.events)
+            setAllItems(response.data.events)
+
+            
         } catch (error) {
             console.log(error)
         }

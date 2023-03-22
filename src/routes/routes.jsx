@@ -3,9 +3,10 @@ import {createBrowserRouter} from 'react-router-dom';
 //Pages
 import App from '../App';
 import PrivateHome from '../containers/Home';
-import PrivateLogin from '../containers/Login';
+
 import PrivateRegister from '../containers/Register';
 import ErrorPage from '../pages/error/Index';
+import Login from '../pages/login/Index';
 
 
 export const router = createBrowserRouter([
@@ -24,7 +25,7 @@ export const router = createBrowserRouter([
             },
             {
                path: 'login',
-               element: <PrivateLogin/>
+               element: <Login/>
             },
             {
                 path: 'register',

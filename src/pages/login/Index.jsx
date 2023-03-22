@@ -14,17 +14,10 @@ const Login = () => {
     const [passwordError, setPasswordError] = useState(false);
 
     const { logado, setLogado } = useContext(UserContext);
-    const [cont, setCont] = useState(false);
+    
     const navigate = useNavigate();
-    const [chave, setChave] = useState('')
-
-
-    useEffect(() => {
-        if (cont === true) {
-            console.log("chave: ", chave)
-            navigate('/home')
-        }
-    }, [cont])
+    
+    
 
     const changeEmail = (e) => {
         setEmail(e.target.value);
@@ -47,6 +40,7 @@ const Login = () => {
             password
         }).then((response) => {
             dataAux = response.data;
+            console.log(dataAux.user.city)
 
             console.log(response.statusText)
 
@@ -54,6 +48,8 @@ const Login = () => {
             data1 = {
                 key: dataAux.token,
                 logado: true,
+                city: dataAux.user.city,
+                country: dataAux.user.country
             }
 
         }).catch((error) => {
@@ -65,24 +61,21 @@ const Login = () => {
 
         if (statusResponse === 200) {
             setLogado({
-                key: data1.key,
-                logado: data1.logado,
+                key: dataAux.token,
+                logado: true,
+                city: dataAux.user.city,
+                country: dataAux.user.country
             })
 
-            setChave(data1.key)
-
             localStorage.setItem('login_tasks', JSON.stringify({
-                key: data1.key,
-                logado: data1.logado,
+                key: dataAux.token,
+                logado: true,
+                city: dataAux.user.city,
+                country: dataAux.user.country
             }));
-
-
             alert('Login successfully completed!')
-            setCont(true)
 
-            //Isso é uma "Gambiarra" por enquanto, se puder ajudar a resolver o problema com navigate, deixe um feedback
-            // navigate("/home")
-            window.location.reload()
+            navigate("/home")
         }
     }
 
