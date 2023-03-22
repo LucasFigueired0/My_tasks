@@ -1,5 +1,5 @@
 //Components
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import Navbar from '../../components/navbar/Index'
 import TaskContext from '../../contexts/taskContext';
 import CreateTasks from './components/createTasks';
@@ -8,33 +8,23 @@ import WeekDayBar from './components/weekDayBar/Index';
 
 const Index = () => {
   const [cadTask, setCadTask] = useState(null)
-  const [daySelect, setDaySelect] = useState('monday')
-  const [totalItems, setTotalItens] = useState(null)
   const [cont, setCont] = useState(0);
   const [allItems, setAllItems] = useState(null)
+  const [dayOfWeek, setDayOfWeek] = useState('monday')
 
-  const handleDaySelect = (day) =>{
-    setDaySelect(day)
-  }
-
-  const handleTotalItems = (items) =>{
-    setTotalItens(items)
-    
-    console.log("Itens na home"+items)
-  }
-
-  const handleCont = (value) =>{
-    setCont(value)
-  }
- 
   return (
 
     <div>
-      <TaskContext.Provider value={{ cadTask, setCadTask, cont, setCont, allItems, setAllItems}}>
+      <TaskContext.Provider value={{
+        cadTask, setCadTask,
+        cont, setCont,
+        allItems, setAllItems, 
+        dayOfWeek, setDayOfWeek
+      }}>
         <Navbar />
-        <CreateTasks arr={totalItems} cont={handleCont}/>
-        <WeekDayBar onDaySelect={handleDaySelect}/>
-        <ShowTasks daySelect={daySelect} contador={cont}/>
+        <CreateTasks />
+        <WeekDayBar/>
+        <ShowTasks />
       </TaskContext.Provider>
     </div>
   )

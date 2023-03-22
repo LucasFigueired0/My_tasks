@@ -1,12 +1,15 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
+import TaskContext from '../../../../contexts/taskContext';
 import "./Styles.css"
 
 
-const WeekDayBar = ({onDaySelect}) => {
+const WeekDayBar = () => {
 
   const sizeClicked = 15;
   const size = 12;
-
+  
+  const {dayOfWeek, setDayOfWeek} = useContext(TaskContext);
+  
   const [mondaySize,setMondaySize] = useState(sizeClicked);
   const [tuesdaySize, setTuesdaySize] = useState(size);
   const [wednesdaySize, setWednesdaySize] = useState(size);
@@ -24,7 +27,7 @@ const WeekDayBar = ({onDaySelect}) => {
     setFridaySize(size);
     setSaturdaySize(size)
     setSundaySize(size)
-    onDaySelect('monday');
+    setDayOfWeek('monday');
   };
 
   const clickTuesday = () =>{
@@ -35,7 +38,7 @@ const WeekDayBar = ({onDaySelect}) => {
     setFridaySize(size);
     setSaturdaySize(size)
     setSundaySize(size)
-    onDaySelect('tuesday');
+    setDayOfWeek('tuesday');
   };
 
   const clickWednesday = () =>{
@@ -46,7 +49,7 @@ const WeekDayBar = ({onDaySelect}) => {
     setFridaySize(size);
     setSaturdaySize(size)
     setSundaySize(size)
-    onDaySelect('wednesday');
+    setDayOfWeek('wednesday');
   };
 
   const clickThursday = () =>{
@@ -57,7 +60,7 @@ const WeekDayBar = ({onDaySelect}) => {
     setFridaySize(size);
     setSaturdaySize(size)
     setSundaySize(size)
-    onDaySelect("thursday");
+    setDayOfWeek("thursday");
   };
 
   const clickFriday = () =>{
@@ -68,7 +71,7 @@ const WeekDayBar = ({onDaySelect}) => {
     setFridaySize(sizeClicked);
     setSaturdaySize(size)
     setSundaySize(size)
-    onDaySelect("friday")
+    setDayOfWeek("friday")
   };
 
   const clickSaturday = () =>{
@@ -79,7 +82,7 @@ const WeekDayBar = ({onDaySelect}) => {
     setFridaySize(size);
     setSaturdaySize(sizeClicked)
     setSundaySize(size)
-    onDaySelect("saturday")
+    setDayOfWeek("saturday")
   };
 
   const clickSunday = () =>{
@@ -90,7 +93,7 @@ const WeekDayBar = ({onDaySelect}) => {
     setFridaySize(size);
     setSaturdaySize(size)
     setSundaySize(sizeClicked)
-    onDaySelect("sunday")
+    setDayOfWeek("sunday")
   };
 
 

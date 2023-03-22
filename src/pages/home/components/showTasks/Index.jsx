@@ -6,7 +6,7 @@ import uol from "../../../../assets/img/uol.png"
 
 import "./Styles.css"
 
-const ShowTasks = ({ daySelect}) => {
+const ShowTasks = () => {
     const { cadTask } = useContext(TaskContext);
 
     const [allTasks, setAllTasks] = useState([]);
@@ -14,8 +14,11 @@ const ShowTasks = ({ daySelect}) => {
     const [tasks, setTasks] = useState(null)
     const [classeErro, setClasseErro] = useState(null)
     const [totIgual, setTotIgual] = useState(0);
-    const {allItems, setAllItems} = useContext(TaskContext);
 
+    const {setAllItems} = useContext(TaskContext);
+    const {dayOfWeek} = useContext(TaskContext);
+
+    
 
 
 
@@ -85,7 +88,7 @@ const ShowTasks = ({ daySelect}) => {
 
             setAllItems(response.data.events)
 
-            
+
         } catch (error) {
             console.log(error)
         }
@@ -122,13 +125,13 @@ const ShowTasks = ({ daySelect}) => {
                     <p>Time</p>
                 </div>
                 {allTasks.length === 0 ? "Nenhuma tarefa inda" : (
-                    allTasks.filter((dados) => dados.dayOfWeek === daySelect)
+                    allTasks.filter((dados) => dados.dayOfWeek === dayOfWeek)
                         .map((dados) => (
                             (<div className="task" key={dados._id}>
                                 <ItemTask
                                     time={dados.time}
                                     description={dados.description}
-                                    weekDay={daySelect}
+                                    weekDay={dayOfWeek}
                                     deleteItem={deleteTaskItem}
                                     idItem={dados._id}
                                     repeat={dados.isRepeat}

@@ -12,15 +12,14 @@ const CreateTasks = () => {
     const [optionTime, setOptionTime] = useState([]);
 
     const [taskText, setTaskText] = useState('');
+    // const {dayOfWeek} = useContext(TaskContext);
     const [taskWeek, setTaskWeek] = useState('monday');
     const [taskClock, setTaskClock] = useState('');
 
     const [taskTextError, setTaskTextError] = useState(false);
-    const [taskClockError, setTaskClockError] = useState(false);
-    const { cadTask, setCadTask } = useContext(TaskContext);
-
-    const { cont, setCont } = useContext(TaskContext);
-    const { allItems , setAllItems} = useContext(TaskContext);
+    const { setCadTask } = useContext(TaskContext);
+    const {setCont } = useContext(TaskContext);
+    const { allItems} = useContext(TaskContext);
 
     useEffect(() => {
         setOptionWeek(daysWeek().map((dia) => (
@@ -30,6 +29,8 @@ const CreateTasks = () => {
 
     const deleteAllTaskItem = async () => {
         console.log(allItems)
+        console.log(taskWeek)
+
         if (allItems !== null || allItems !== undefined) {
             let okay = null
             for (let i in allItems) {
